@@ -20,7 +20,13 @@ class SearchBar extends Component {
   
   onFormSubmit(event){
     event.preventDefault();
-    console.log(this.state.term);
+
+    //this is from App.js function onSubmit <SearchBar onSubmit  = {}
+    //build reference to the prop
+    //console.log should output to Appjs not searchbar.js
+    this.props.onSubmit(this.state.term);
+
+    // console.log(this.state.term);
   }
 
   render() {
