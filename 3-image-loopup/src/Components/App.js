@@ -1,8 +1,10 @@
 import React from "react";
-import axios from 'axios';
+
+import unsplash from '../api/unsplash';
 
 import "./App.css";
-import SearchBar from  './SearchBar'
+import SearchBar from  './SearchBar';
+import ImageList from './ImageList';
 
 //convert from function component into class component
 class App extends React.Component {
@@ -15,11 +17,9 @@ class App extends React.Component {
 
   //create a callback function that will drive the data from a form from SearchBar back into parent
  onSearchSubmit = async (term) => {
-   const response = await axios.get('https://api.unsplash.com/search/photos', {
+   const response = await unsplash.get('/search/photos', {
       params: { query : term},
-      headers: {
-        Authorization: 'Client-ID xF3boNWFEMwXSnLb7BIPVXU0kFdC8a51zQJBDMOouCY' 
-      }
+
     });
   
     //console.log(this);
@@ -34,6 +34,7 @@ class App extends React.Component {
       <div className = "margin-center container">
         <SearchBar onSubmit = {this.onSearchSubmit} />
         Found: {this.state.images.length} images
+        <ImageList images = { this.state.images }/>
       </div>
     )
   }
