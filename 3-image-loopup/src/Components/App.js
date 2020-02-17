@@ -7,15 +7,14 @@ import SearchBar from  './SearchBar'
 //convert from function component into class component
 class App extends React.Component {
   //create a callback function that will drive the data from a form from SearchBar back into parent
-  onSearchSubmit(term){
-    // console.log(term)
-    //
-    axios.get('https://api.unsplash.com/search/photos', {
+ async onSearchSubmit(term){
+   const response = await axios.get('https://api.unsplash.com/search/photos', {
       params: { query : term},
       headers: {
         Authorization: 'Client-ID xF3boNWFEMwXSnLb7BIPVXU0kFdC8a51zQJBDMOouCY' 
       }
     });
+    console.log(response.data.results);
   }
 
   render() {
@@ -38,4 +37,22 @@ const App = () => {
     </div>
   );
 };
+*/
+
+/*
+//great with promise
+class App extends React.Component {
+  //create a callback function that will drive the data from a form from SearchBar back into parent
+  onSearchSubmit(term){
+    // console.log(term)
+    //get the images in HXR network tab in dev tools
+    axios.get('https://api.unsplash.com/search/photos', {
+      params: { query : term},
+      headers: {
+        Authorization: 'Client-ID xF3boNWFEMwXSnLb7BIPVXU0kFdC8a51zQJBDMOouCY' 
+      }
+    }).then((response) => {
+        console.log(response.data.results);
+    })
+  }
 */
